@@ -1,16 +1,4 @@
 <script>
-	/**
-	 * Reusable collapsible item component
-	 * @param {string} title - Main title text
-	 * @param {string} borderColor - Border color class (e.g., 'border-red-400')
-	 * @param {number} mainPrice - Left price to display
-	 * @param {number} secondaryPrice - Right price to display
-	 * @param {number} volume - Volume per hour
-	 * @param {number} profit - Profit percentage
-	 * @param {Array} details - Array of detail items to display (optional)
-	 * @param {string} slot} - Slot for custom content
-	 */
-
 	let {
 		title = "",
 		mainPrice = null,

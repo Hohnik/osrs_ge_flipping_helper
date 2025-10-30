@@ -9,12 +9,11 @@
 	let loading = $state(false);
 	let error = $state(data.error || null);
 	let isInitialLoad = $state(true);
-	let visibleCount = $state(50); // Start by showing first 50 items
+	let visibleCount = $state(50);
 	let scrollContainer = $state(null);
 	let sortedItemsList = $state([]);
 
 	onMount(async () => {
-		// Fetch data on component mount
 		try {
 			const prices = await fetchAlchPrices();
 			alchPrices = prices;

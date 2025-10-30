@@ -1,4 +1,4 @@
-import { fetchPotionPrices } from "$lib/osrsApi.js";
+import { fetchPotionPrices } from "$lib/potionsApi.js";
 
 const POTIONS = [
 	"Super combat potion",

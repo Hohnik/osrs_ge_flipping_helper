@@ -11,7 +11,6 @@
 	let isInitialLoad = $state(true);
 
 	onMount(async () => {
-		// Fetch data on component mount
 		try {
 			const prices = await fetchGemPrices();
 			gemPrices = prices;

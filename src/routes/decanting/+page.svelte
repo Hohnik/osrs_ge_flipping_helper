@@ -1,7 +1,7 @@
 <script>
 	import { enhance } from "$app/forms";
 	import { onMount } from "svelte";
-	import { fetchPotionPrices } from "$lib/osrsApi.js";
+	import { fetchPotionPrices } from "$lib/potionsApi.js";
 	import CollapsibleItem from "$lib/components/CollapsibleItem.svelte";
 
 	let { data, form } = $props();
@@ -11,7 +11,6 @@
 	let isInitialLoad = $state(true);
 
 	onMount(async () => {
-		// Fetch data on component mount
 		try {
 			const prices = await fetchPotionPrices(data.potions);
 			potionPrices = prices;
@@ -80,7 +79,6 @@
 
 <div class="min-h-screen bg-base-100 py-8 px-4">
 	<div class="container mx-auto max-w-2xl">
-		<!-- Header -->
 		<div class="mb-8">
 			<h1 class="text-4xl font-bold mb-2">Potion Decanting</h1>
 			<p class="text-base-content/70">Flip potions for profit</p>
@@ -92,7 +90,6 @@
 			</div>
 		{/if}
 
-		<!-- Refresh Button -->
 		<div class="mb-6">
 			<form method="POST" action="?/refresh" use:enhance={() => {
 				loading = true;
@@ -114,7 +111,6 @@
 			</form>
 		</div>
 
-		<!-- Loading Skeleton -->
 		{#if isInitialLoad && !error}
 			<div class="space-y-2">
 				{#each Array(8) as _}
