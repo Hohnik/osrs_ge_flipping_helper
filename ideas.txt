@@ -1,0 +1,84 @@
+1. Flipping/Merching - Buy low, sell high on regular items
+    - Track price movements over time
+    - Identify underpriced items
+    - Show potential profit margins
+  2. Alching - Buy items cheap, alch them for profit
+    - High alch value vs GE price
+    - Requires Fire runes cost calculation
+    - Good for steady profit
+  3. Crafting Flips - Buy raw materials, craft items, sell finished products
+    - Jewelry (rings, amulets)
+    - Armor/weapons
+    - Compare material cost vs final item value
+  4. Herblore Flips - Similar to potions but:
+    - Grinding herbs into powder
+    - Creating unfinished potions
+    - Adding secondary ingredients
+    - Comparing all stages
+  5. Cooking - Buy raw food, cook it, sell cooked
+    - Fish, meat, etc.
+    - Show profit per item
+  6. Tanning/Leather Working - Buy hides, tan them, sell leather
+    - Multiple leather types
+    - Show tanner costs
+  7. Smithing - Buy ore, smelt into bars, forge into items
+    - Calculate coal/mithril costs
+    - Show profit at each stage
+  8. Gem Cutting - Buy uncut gems, cut them, sell
+    - Diamond, ruby, sapphire, emerald profits
+  9. Log Flipping - Buy logs, process into planks, sell
+    - Different wood types
+    - Plank maker costs
+  10. Rune Crafting - Buy rune essence, craft runes, sell
+    - Different rune types
+    - Compare pure essence vs runes
+
+  Which would interest you most? I'd recommend starting with:
+  - Alching (simple, high turnover)
+  - Herblore Flips (similar to what you're already doing)
+  - Gem Cutting (good profit margins, limited items to track)
+
+  Should I implement one of these next?
+
+> Which do you think could be the most profitable?
+
+⏺ Based on OSRS economics, I'd rank them by profitability potential:
+
+  Top 3 Most Profitable:
+
+  1. Alching - Most profitable for effort ratio
+    - High alch values are fixed, so you just find underpriced items
+    - Fire rune cost is negligible (~5gp)
+    - Profit margins can be 10-30%+ on good items
+    - Fast turnover (instant alch, instant sell back)
+    - No skill/time investment needed
+    - Examples: Rune items, jewelry, weapons often have 20%+ alch margins
+  2. Herblore Flips (like your potions)
+    - What you're already doing with potions
+    - Consistent demand (PvM, skilling)
+    - Good volume = reliable flips
+    - 5-25% profit margins are common
+    - But slower than alching (need to buy components, make potions, sell)
+  3. Gem Cutting
+    - Onyx, diamond, ruby, sapphire cutting
+    - Can have 15-30%+ margins
+    - But lower volume than potions
+    - Requires tracking fewer items
+
+  Why Alching is probably #1:
+  - The GE prices change daily, so there are always underpriced items
+  - You're comparing current GE price vs FIXED high alch value
+  - Takes ~2 seconds per item to alch
+  - Can do it while doing other things
+  - People constantly merch items poorly, creating alch opportunities
+
+  The catch:
+  - Requires active trading (buying + alching + selling)
+  - Less "set and forget" than potions
+  - Margins vary by item, need to find the good ones
+
+  My recommendation: Implement Alching next. It's simpler to build (fewer calculations), potentially more profitable, and less dependent on volume data. You'd:
+  1. Show all items with high alch values from the API
+  2. Compare to current GE price
+  3. Highlight items with >10% margin
+  4. Sort by profit potential
