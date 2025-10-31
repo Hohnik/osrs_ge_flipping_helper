@@ -1,5 +1,6 @@
-import { injectAnalytics } from "@vercel/analytics/sveltekit";
+import { dev } from '$app/environment';
+import { injectAnalytics } from '@vercel/analytics/sveltekit';
 import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit";
-injectAnalytics();
-injectSpeedInsights();
 
+injectSpeedInsights();
+injectAnalytics({ mode: dev ? 'development' : 'production' });
