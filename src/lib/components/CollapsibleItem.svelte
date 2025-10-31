@@ -31,15 +31,15 @@
 			{#if subtitle}
 				<span class="badge badge-sm badge-outline">{subtitle}</span>
 			{/if}
-			{#if buyLimit && buyLimit > 0}
+			{#if buyLimit && buyLimit > 0 && typeof buyLimit === 'number'}
 				<span class="badge badge-sm badge-warning">Limit: {buyLimit}</span>
 			{/if}
-			{#if mainPrice !== null && secondaryPrice !== null}
+			{#if mainPrice !== null && secondaryPrice !== null && typeof mainPrice === 'number' && typeof secondaryPrice === 'number'}
 				<span class="text-xs opacity-70">
 					{mainPrice.toLocaleString()} → {secondaryPrice.toLocaleString()}
 				</span>
 			{/if}
-			{#if volume}
+			{#if volume && typeof volume === 'number'}
 				<span class="text-xs font-semibold {getVolumeColor(volume)}">
 					{Math.round(volume).toLocaleString()} vol/h
 				</span>
@@ -47,12 +47,12 @@
 		</div>
 		{#if profit !== null || profitFlat !== null}
 			<div class="flex flex-col items-end gap-1">
-				{#if profitFlat !== null}
+				{#if profitFlat !== null && typeof profitFlat === 'number'}
 					<span class="text-xs font-semibold {profitFlat >= 0 ? 'text-success' : 'text-error'}">
 						{profitFlat > 0 ? "+" : ""}{Math.round(profitFlat).toLocaleString()} gp
 					</span>
 				{/if}
-				{#if profit !== null}
+				{#if profit !== null && typeof profit === 'number'}
 					<span class="badge {profit >= 0 ? 'badge-success' : 'badge-error'}">
 						{profit > 0 ? "+" : ""}{profit.toFixed(1)}%
 					</span>

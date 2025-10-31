@@ -1,23 +1,42 @@
 <script>
 	const strategies = [
 		{
+			name: "Jewelry Crafting",
+			path: "/jewelry",
+			description:
+				"Craft jewelry from uncut gems and gold bars. Profitable skill training with consistent demand.",
+			difficulty: "Easy",
+			skill: "Crafting",
+			skillIcon: "https://oldschool.runescape.wiki/images/Crafting_icon.png",
+			skillLevel: "20+",
+		},
+		{
 			name: "Potion Decanting",
 			path: "/decanting",
 			description:
 				"Buy potions in lower doses and decant them into 4-dose variants for profit.",
 			difficulty: "Easy",
+			skill: "Herblore",
+			skillIcon: "https://oldschool.runescape.wiki/images/Herblore_icon.png",
+			skillLevel: "1+",
 		},
 		{
 			name: "Herb Cleaning",
 			path: "/cleaning",
 			description: "Clean grimy herbs and sell them for profit.",
 			difficulty: "Easy",
+			skill: "Herblore",
+			skillIcon: "https://oldschool.runescape.wiki/images/Herblore_icon.png",
+			skillLevel: "1+",
 		},
 		{
 			name: "Gem Cutting",
 			path: "/cutting",
 			description: "Cut uncut gems and sell them for profit.",
 			difficulty: "Easy",
+			skill: "Crafting",
+			skillIcon: "https://oldschool.runescape.wiki/images/Crafting_icon.png",
+			skillLevel: "10+",
 		},
 		{
 			name: "Alching",
@@ -25,6 +44,9 @@
 			description:
 				"Buy items cheap and alch them for profit. Instant conversion to gold with no reselling needed.",
 			difficulty: "Easy",
+			skill: "Magic",
+			skillIcon: "https://oldschool.runescape.wiki/images/Magic_icon.png",
+			skillLevel: "55+",
 		},
 	];
 </script>
@@ -53,11 +75,30 @@
 					class="card bg-base-100 shadow-xl hover:shadow-2xl transition hover:scale-105 cursor-pointer h-full"
 				>
 					<div class="card-body flex flex-col">
-						<h2 class="card-title text-xl">{strategy.name}</h2>
+						<div class="flex items-start justify-between mb-2">
+							<h2 class="card-title text-xl">{strategy.name}</h2>
+							{#if strategy.skillIcon}
+								<img
+									src={strategy.skillIcon}
+									alt={strategy.skill}
+									class="w-8 h-8"
+									loading="lazy"
+								/>
+							{/if}
+						</div>
+
 						<p class="text-sm text-gray-600 mb-4 flex-grow">
 							{strategy.description}
 						</p>
-						<div class="badge badge-secondary">{strategy.difficulty}</div>
+
+						<div class="flex items-center justify-between">
+							<div class="badge badge-secondary">{strategy.difficulty}</div>
+							{#if strategy.skill}
+								<div class="text-xs font-semibold text-primary">
+									{strategy.skill} {strategy.skillLevel}
+								</div>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</a>

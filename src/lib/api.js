@@ -25,17 +25,40 @@ export async function getMappingById() {
 
 export async function getVolume(itemIds) {
 	const volumeData = {};
-	for (const itemId of itemIds) {
-		try {
-			const data = await fetchAPI(`/timeseries?id=${itemId}&timestep=1h`);
-			if (data.data?.length > 0) {
-				const volumes = data.data.map(d => (d.highPriceVolume || 0) + (d.lowPriceVolume || 0));
-				volumeData[itemId] = Math.round(volumes.reduce((a, b) => a + b) / volumes.length);
+
+	if (!itemIds.length) return volumeData;
+
+	// Limit volume requests to only top items by profit potential
+	// This prevents overwhelming the API with thousands of requests
+	const LIMITED_IDS = itemIds.slice(0, 100);
+
+	// Batch requests with delays to avoid rate limiting
+	const BATCH_SIZE = 10;
+	const DELAY_MS = 100;
+
+	for (let i = 0; i < LIMITED_IDS.length; i += BATCH_SIZE) {
+		const batch = LIMITED_IDS.slice(i, i + BATCH_SIZE);
+
+		const promises = batch.map(async itemId => {
+			try {
+				const data = await fetchAPI(`/timeseries?id=${itemId}&timestep=1h`);
+				if (data.data?.length > 0) {
+					const volumes = data.data.map(d => (d.highPriceVolume || 0) + (d.lowPriceVolume || 0));
+					volumeData[itemId] = Math.round(volumes.reduce((a, b) => a + b) / volumes.length);
+				}
+			} catch (e) {
+				// Skip items with errors
 			}
-		} catch (e) {
-			// Skip items with errors
+		});
+
+		await Promise.all(promises);
+
+		// Add delay between batches
+		if (i + BATCH_SIZE < LIMITED_IDS.length) {
+			await new Promise(resolve => setTimeout(resolve, DELAY_MS));
 		}
 	}
+
 	return volumeData;
 }
 

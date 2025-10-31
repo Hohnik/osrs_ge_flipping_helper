@@ -16,18 +16,22 @@ export async function fetchAlchPrices() {
 	itemIds.forEach(id => {
 		const item = mappingById[id];
 		const price = prices[id];
-		if (price && item?.highalch) {
-			const profit = calcProfit(price.high, item.highalch, FIRE_RUNE_COST);
+		if (price && item?.highalch && typeof price.high === 'number') {
+			const profitHigh = calcProfit(price.high, item.highalch, FIRE_RUNE_COST);
+			const profitLow = item.lowalch ? calcProfit(price.high, item.lowalch, FIRE_RUNE_COST) : null;
 			result[item.name] = {
+				itemId: id,
 				name: item.name,
-				gePrice: price.high,
-				highAlch: item.highalch,
-				lowAlch: item.lowalch,
-				profitHigh: profit?.pct || null,
-				profitHighFlat: profit?.flat || null,
+				gePrice: Number(price.high),
+				highAlch: Number(item.highalch),
+				lowAlch: item.lowalch || 0,
+				profitHigh: (profitHigh && typeof profitHigh.pct === 'number') ? profitHigh.pct : null,
+				profitHighFlat: (profitHigh && typeof profitHigh.flat === 'number') ? profitHigh.flat : null,
+				profitLow: (profitLow && typeof profitLow.pct === 'number') ? profitLow.pct : null,
+				profitLowFlat: (profitLow && typeof profitLow.flat === 'number') ? profitLow.flat : null,
 				volume: volumes[id] || 0,
 				members: item.members || false,
-				buyLimit: item.limit || 0
+				buyLimit: Number(item.limit || 0)
 			};
 		}
 	});

@@ -12,6 +12,7 @@
 		<div class="flex-none gap-2">
 			<ul class="menu menu-horizontal px-1">
 				<li><a href="/">Home</a></li>
+				<li><a href="/jewelry">Jewelry Crafting</a></li>
 				<li><a href="/decanting">Decanting</a></li>
 				<li><a href="/cleaning">Cleaning</a></li>
 				<li><a href="/cutting">Cutting</a></li>

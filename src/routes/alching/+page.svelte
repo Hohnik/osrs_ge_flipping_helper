@@ -153,7 +153,7 @@
 									<div class="bg-base-100 rounded p-3 border border-base-300">
 										<div class="text-xs opacity-70 mb-1">GE Buy Price</div>
 										<div class="text-lg font-bold text-primary">
-											{item.gePrice.toLocaleString()}
+											{item.gePrice ? item.gePrice.toLocaleString() : 'N/A'}
 										</div>
 										{#if item.volume > 0}
 											<div class="text-xs opacity-70 mt-2">
@@ -192,7 +192,7 @@
 										>
 											<div class="text-xs opacity-70 mb-1">High Alch Value</div>
 											<div class="text-lg font-bold text-success">
-												{item.highAlch.toLocaleString()}
+												{item.highAlch ? item.highAlch.toLocaleString() : 'N/A'}
 											</div>
 										</div>
 										<div
@@ -200,15 +200,13 @@
 										>
 											<div class="text-xs opacity-70 mb-1">Profit Per Item</div>
 											<div class="text-lg font-bold text-success">
-												{(item.highAlch - item.gePrice).toLocaleString()} gp
+												{(item.highAlch && item.gePrice) ? (item.highAlch - item.gePrice).toLocaleString() : 'N/A'} gp
 											</div>
 										</div>
 									</div>
-									{#if item.profitHigh !== null}
+									{#if item.profitHigh !== null && typeof item.profitHigh === 'number'}
 										<div class="text-xs opacity-70">
-											{item.profitHigh >= 0 ? "+" : ""}{item.profitHigh.toFixed(
-												1,
-											)}%
+											{item.profitHigh >= 0 ? "+" : ""}{item.profitHigh.toFixed(1)}%
 										</div>
 									{/if}
 								</div>
@@ -225,7 +223,7 @@
 													Low Alch Value
 												</div>
 												<div class="text-lg font-bold text-info">
-													{item.lowAlch.toLocaleString()}
+													{item.lowAlch ? item.lowAlch.toLocaleString() : 'N/A'}
 												</div>
 											</div>
 											<div class="bg-info/10 rounded p-3 border border-info/30">
@@ -233,15 +231,13 @@
 													Profit Per Item
 												</div>
 												<div class="text-lg font-bold text-info">
-													{(item.lowAlch - item.gePrice).toLocaleString()} gp
+													{(item.lowAlch && item.gePrice) ? (item.lowAlch - item.gePrice).toLocaleString() : 'N/A'} gp
 												</div>
 											</div>
 										</div>
-										{#if item.profitLow !== null}
+										{#if item.profitLow !== null && typeof item.profitLow === 'number'}
 											<div class="text-xs opacity-70">
-												{item.profitLow >= 0 ? "+" : ""}{item.profitLow.toFixed(
-													1,
-												)}%
+												{item.profitLow >= 0 ? "+" : ""}{item.profitLow.toFixed(1)}%
 											</div>
 										{/if}
 									</div>
