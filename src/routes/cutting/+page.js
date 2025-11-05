@@ -1,10 +1,6 @@
-export const prerender = false;
-export const ssr = false;
+import { createPageLoadWithStatic } from '$lib/loadFunctions.js';
+import { fetchGemPrices } from "$lib/gemsApi.js";
 
-export async function load() {
-	// Return immediately without waiting for data
-	return {
-		gemPrices: {},
-		error: null
-	};
-}
+export const load = createPageLoadWithStatic(fetchGemPrices, {
+	dataKey: 'gemPrices'
+});

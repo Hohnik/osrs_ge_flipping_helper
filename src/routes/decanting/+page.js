@@ -1,5 +1,5 @@
-export const prerender = false;
-export const ssr = false;
+import { createPageLoadWithStatic } from '$lib/loadFunctions.js';
+import { fetchPotionPrices } from "$lib/potionsApi.js";
 
 const POTIONS = [
 	"Prayer potion",
@@ -10,11 +10,7 @@ const POTIONS = [
 	"Ranging potion"
 ];
 
-export async function load() {
-	// Return immediately without waiting for data
-	return {
-		potionPrices: {},
-		potions: POTIONS,
-		error: null
-	};
-}
+export const load = createPageLoadWithStatic(fetchPotionPrices, {
+	dataKey: 'potionPrices',
+	potions: POTIONS
+});

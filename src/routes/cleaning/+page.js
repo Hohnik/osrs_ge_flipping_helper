@@ -1,10 +1,6 @@
-export const prerender = false;
-export const ssr = false;
+import { createPageLoadWithStatic } from '$lib/loadFunctions.js';
+import { fetchHerbPrices } from '$lib/herbsApi.js';
 
-export async function load() {
-	// Return immediately without waiting for data
-	return {
-		herbPrices: {},
-		error: null
-	};
-}
+export const load = createPageLoadWithStatic(fetchHerbPrices, {
+	dataKey: 'herbPrices'
+});

@@ -1,10 +1,11 @@
-export const prerender = false;
-export const ssr = false;
+import { fetchAlchPrices } from "$lib/alchingApi.js";
 
 export async function load() {
-	// Return immediately without waiting for data
 	return {
-		alchPrices: {},
-		error: null
+		streamed: {
+			alchPrices: fetchAlchPrices().catch(error => ({
+				error: error.message
+			}))
+		}
 	};
 }

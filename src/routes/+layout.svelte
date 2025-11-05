@@ -1,22 +1,28 @@
 <script>
 	import "../app.css";
+	import { asset } from "$app/paths";
 
 	let { children } = $props();
 </script>
 
 <div class="app">
 	<div class="navbar bg-base-100 shadow-md">
-		<div class="flex-1">
-			<a href="/" class="btn btn-ghost normal-case text-xl">OSRS Trade</a>
+		<div class="navbar-start">
+			<a
+				href="/"
+				class="btn btn-ghost normal-case text-lg flex items-center gap-2 px-2"
+			>
+				<img alt="OSRS coinstack" src={asset("/logo.svg")} />
+				OSRS Trade
+			</a>
 		</div>
-		<div class="flex-none gap-2">
+		<div class="navbar-center navbar-end gap-2">
 			<ul class="menu menu-horizontal px-1">
-				<li><a href="/">Home</a></li>
+				<li><a href="/decanting">Potion Decanting</a></li>
+				<li><a href="/cleaning">Herb Cleaning</a></li>
 				<li><a href="/jewelry">Jewelry Crafting</a></li>
-				<li><a href="/decanting">Decanting</a></li>
-				<li><a href="/cleaning">Cleaning</a></li>
-				<li><a href="/cutting">Cutting</a></li>
-				<li><a href="/alching">Alching</a></li>
+				<li><a href="/cutting">Gem Cutting</a></li>
+				<li><a href="/alching">High Alching</a></li>
 			</ul>
 		</div>
 	</div>

@@ -1,18 +1,4 @@
+import { createRefreshAction } from '$lib/serverActions.js';
 import { fetchGemPrices } from '$lib/gemsApi.js';
 
-export const actions = {
-	refresh: async () => {
-		try {
-			const gemPrices = await fetchGemPrices();
-			return {
-				success: true,
-				gemPrices
-			};
-		} catch (error) {
-			return {
-				success: false,
-				error: error.message
-			};
-		}
-	}
-};
+export const actions = createRefreshAction(fetchGemPrices);
