@@ -27,7 +27,7 @@
 		</div>
 	</div>
 
-	<main>
+	<main class="container mx-auto p-4">
 		{@render children()}
 	</main>
 </div>
